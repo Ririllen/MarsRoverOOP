@@ -30,67 +30,69 @@ class Rover{
         this.instructions = instructions;
     }
 
-    moveLeft(orientation){
-        switch (orientation){            
-            case "N": return "V";
-            case "S": return "E";
-            case "V": return "S";
-            case "E": return "N";
+    moveLeft(){
+        switch (this.orientation){            
+            case "N": this.orientation = "V";break;
+            case "S": this.orientation = "E";break;
+            case "V": this.orientation = "S";break;
+            case "E": this.orientation = "N";break;
         }
     } 
 
-    moveRight(orientation){
-        switch (orientation){
-            case "N": return "E";
-            case "S": return "V";
-            case "V": return "N"; 
-            case "E": return "S"; 
+    moveRight(){
+        switch (this.orientation){
+            case "N": this.orientation = "E";break;
+            case "S": this.orientation = "V";break;
+            case "V": this.orientation = "N";break;
+            case "E": this.orientation = "S";break; 
         }
     }
 
-    movement(xPos, yPos, orientation,maxPosX, maxPosY){
+    movement(maxPosX, maxPosY){
         let rip = "";
-        switch (orientation){
-            case "N": if ( (yPos + 1) > maxPosY){ 
+        switch (this.orientation){
+            case "N": if ( (this.yPos + 1) > maxPosY){ 
                         rip = "X";
-                      } else { yPos += 1;}
+                      } else { this.yPos += 1;}
                     break;
-            case "S": if ( (yPos - 1) < 0){ 
+            case "S": if ( (this.yPos - 1) < 0){ 
                         rip = "X";
-                       } else { yPos -= 1;}       
+                       } else { this.yPos -= 1;}       
                     break;
-            case "V": if ( (xPos - 1) < 0){ 
+            case "V": if ( (this.xPos - 1) < 0){ 
                         rip = "X"; 
-                      } else { xPos -= 1; }
+                      } else { this.xPos -= 1; }
                     break;
-            case "E": if ( (xPos + 1) > maxPosX){ 
+            case "E": if ( (this.xPos + 1) >maxPosX){ 
                         rip = "X";
-                      } else { xPos += 1;}
+                      } else { this.xPos += 1;}
                     break;
         }
-        return [xPos,yPos,orientation,rip];
+        return [this.xPos,this.yPos,this.orientation,rip];
     }
 
-    moveRobot(xPos, yPos, orientation, instructions,maxPosX, maxPosY){
+    moveRobot(maxPosX, maxPosY){
         // const [maxPosX, maxPosY] = endPos;
         // let [xPos, yPos, orientation] = position;
     
-        for (const ins of instructions){
+        for (const ins of this.instructions){
             switch (ins) {
                 case "L":  {
-                    orientation = this.moveLeft(orientation);
+                    // this.orientation = 
+                    this.moveLeft();
                     continue;
                 }
                 case "R":  {
-                    orientation = this.moveRight(orientation);
+                    // this.orientation = 
+                    this.moveRight();
                     continue;
                 }
                 case "M":  {
                     let rip = "";
-                    [xPos,yPos,orientation,rip] = this.movement(xPos,yPos,orientation,maxPosX, maxPosY); 
+                    [this.xPos,this.yPos,this.orientation,rip] = this.movement(maxPosX, maxPosY); 
                     
                     if (rip){ 
-                        return `${xPos} ${yPos} ${orientation} RIP`;
+                        return `${this.xPos} ${this.yPos} ${this.orientation} RIP`;
                     } 
                     continue;    
                 }
@@ -98,37 +100,51 @@ class Rover{
                 console.log("S-a gasit o comanda gresita");
             }
         }
-        return `${xPos} ${yPos} ${orientation}`;
+        return `${this.xPos} ${this.yPos} ${this.orientation}`;
     }
 }
 
 
 
-let xPos = document.querySelector('.xCoord'),
-    yPos = document.querySelector('.yCoord'),
-    orientation = document.querySelector('.orientation'),
-    nume = document.querySelector('.nume'),
-    instructions = document.querySelector('.instructiuni'),
+let xPos1 = document.querySelector('.xCoord1'),
+    yPos1 = document.querySelector('.yCoord1'),
+    orientation1 = document.querySelector('.orientation1'),
+    nume1 = document.querySelector('.nume1'),
+    instructions1 = document.querySelector('.instructiuni1'),
     btn = document.querySelector('.verify');
+
+    let xPos2 = document.querySelector('.xCoord2'),
+    yPos2 = document.querySelector('.yCoord2'),
+    orientation2 = document.querySelector('.orientation2'),
+    nume2 = document.querySelector('.nume2'),
+    instructions2 = document.querySelector('.instructiuni2');
+    
+
+    let xPos3 = document.querySelector('.xCoord3'),
+    yPos3 = document.querySelector('.yCoord3'),
+    orientation3 = document.querySelector('.orientation3'),
+    nume3 = document.querySelector('.nume3'),
+    instructions3 = document.querySelector('.instructiuni3');
+    
 
 
 btn.addEventListener('click', function() {
    const mapa = new Map(5,5); 
-   const robot1 = new Rover(1, 2, "N", "LMLMLMLMM");
-   const robot2 = new Rover(3, 3, "E", "MMRMMRMRRM");
-   const robot3 = new Rover(1, 5, "N", "LMMRMLMRM");
+   const robot1 = new Rover(Number(xPos1.value), Number(yPos1.value), orientation1.value, instructions1.value);
+   const robot2 = new Rover(Number(xPos2.value), Number(yPos2.value), orientation2.value, instructions2.value);
+   const robot3 = new Rover(Number(xPos3.value), Number(yPos3.value), orientation3.value, instructions3.value);
 
-   let finalPosition1 = robot1.moveRobot(robot1.xPos, robot1.yPos, robot1.orientation, robot1.instructions, mapa.maxX, mapa.maxY);
-   nume = nume.value;
-   document.querySelector('.resultat').textContent = `Robotelul ${nume} are coordonatele: ${finalPosition1}`;
+   let finalPosition1 = robot1.moveRobot( mapa.maxX, mapa.maxY);
+   nume1 = nume1.value;
+   document.querySelector('.resultat1').textContent = `Robotelul ${nume1} are coordonatele: ${finalPosition1}`;
 
-   let finalPosition2 = robot2.moveRobot(robot2.xPos, robot2.yPos, robot2.orientation, robot2.instructions, mapa.maxX, mapa.maxY);
-//    nume = nume.value;
-   document.querySelector('.resultat').textContent += `Robotelul ${nume} are coordonatele: ${finalPosition2}`;
+   let finalPosition2 = robot2.moveRobot( mapa.maxX, mapa.maxY);
+   nume2 = nume2.value;
+   document.querySelector('.resultat2').textContent = `Robotelul ${nume2} are coordonatele: ${finalPosition2}`;
 
-   let finalPosition3 = robot3.moveRobot(robot3.xPos, robot3.yPos, robot3.orientation, robot3.instructions, mapa.maxX, mapa.maxY);
-//    nume = nume.value;
-   document.querySelector('.resultat').textContent += `Robotelul ${nume} are coordonatele: ${finalPosition3}`;   
+   let finalPosition3 = robot3.moveRobot( mapa.maxX, mapa.maxY);
+   nume3 = nume3.value;
+   document.querySelector('.resultat3').textContent = `Robotelul ${nume3} are coordonatele: ${finalPosition3}`;   
 //    console.log(); 
 }) 
 
