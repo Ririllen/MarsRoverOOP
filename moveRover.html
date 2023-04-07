@@ -5,47 +5,42 @@ Output: “Roboțelul <nume> are coordonatele finale: <coordonate> -->
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Verificare palindrom numar</title>
+        <title>Mars Rover</title>
+        <link rel="stylesheet" href="moveRover.css">
     </head>
-<body>
-​
-<h1>Mars Rover</h1>
-​
-<form class="form">
-    <label>Introduceti Numele Robotului</label><br>
-    <input class="nume1" type="text"/><br>
-    <label>Introduceti Coordonate</label><br>
-    <label>x: </label><input class="xCoord1" type="number">
-    <label>y: </label><input class="yCoord1" type="number">
-    <label>orientation: </label><input class="orientation1" type="text"><br>
-    <label>Introduceti Lista de instrucțiuni</label><br>
-    <input class="instructiuni1" type="text"><br>
-</form>
-<form class="form">
-    <label>Introduceti Numele Robotului</label><br>
-    <input class="nume2" type="text"/><br>
-    <label>Introduceti Coordonate</label><br>
-    <label>x: </label><input class="xCoord2" type="number">
-    <label>y: </label><input class="yCoord2" type="number">
-    <label>orientation: </label><input class="orientation2" type="text"><br>
-    <label>Introduceti Lista de instrucțiuni</label><br>
-    <input class="instructiuni2" type="text"><br>
-</form>
-<form class="form">
-    <label>Introduceti Numele Robotului</label><br>
-    <input class="nume3" type="text"/><br>
-    <label>Introduceti Coordonate</label><br>
-    <label>x: </label><input class="xCoord3" type="number">
-    <label>y: </label><input class="yCoord3" type="number">
-    <label>orientation: </label><input class="orientation3" type="text"><br>
-    <label>Introduceti Lista de instrucțiuni</label><br>
-    <input class="instructiuni3" type="text"><br>
-</form>
-<button type="button" class="verify">Determina Pozitia Finala</button>
-<p class="resultat1"></p>
-<p class="resultat2"></p>
-<p class="resultat3"></p>
-​
-<script type="text/javascript" src="moveRover.js"></script>
-</body>
+    <body>
+        <h1>Mars Rover</h1>
+        <div class="arrange-forms">
+            <form class="form">
+                <label>Introduceti Numele Robotului Nr1 <input class="nume1" type="text"/></label>
+                <label>Introduceti Coordonate</label>
+                <label>x: <input class="xCoord1" type="number"></label>
+                <label>y: <input class="yCoord1" type="number"></label>
+                <label>orientation: <input class="orientation1" type="text"></label>
+                <label>Introduceti Lista de instrucțiuni <input class="instructiuni1" type="text"></label>
+            </form>
+            <form class="form">
+                <label>Introduceti Numele Robotului Nr2 <input class="nume2" type="text"/></label>
+                <label>Introduceti Coordonate</label>
+                <label>x: <input class="xCoord2" type="number"></label>
+                <label>y: <input class="yCoord2" type="number"></label>
+                <label>orientation: <input class="orientation2" type="text"></label>
+                <label>Introduceti Lista de instrucțiuni <input class="instructiuni2" type="text"></label>
+            </form>
+            <form class="form">
+                <label>Introduceti Numele Robotului Nr3 <input class="nume3" type="text"/></label>
+                <label>Introduceti Coordonate</label>
+                <label>x: <input class="xCoord3" type="number"></label>
+                <label>y: <input class="yCoord3" type="number"></label>
+                <label>orientation: <input class="orientation3" type="text"></label>
+                <label>Introduceti Lista de instrucțiuni <input class="instructiuni3" type="text"></label>
+            </form>
+        </div>
+        <button type="button" class="verify">Determina Pozitia Finala</button>
+        <p class="resultat1"></p>
+        <p class="resultat2"></p>
+        <p class="resultat3"></p>
+
+        <script type="text/javascript" src="moveRover.js"></script>
+    </body>
 </html>

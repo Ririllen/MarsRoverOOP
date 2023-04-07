@@ -1,0 +1,11 @@
+form{
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 30px;
+}
+
+.arrange-forms{
+    background-color: antiquewhite;
+    display: flex;
+    justify-content: space-around;
+}
